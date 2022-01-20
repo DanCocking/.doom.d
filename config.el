@@ -6,8 +6,13 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
+<<<<<<< HEAD
+(setq user-full-name "Dan Cocking"
+      user-mail-address "cokingdan@gmail.com")
+=======
 (setq user-full-name "John Doe"
       user-mail-address "john@doe.com")
+>>>>>>> 523a53d (First commit)
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -25,7 +30,11 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
+<<<<<<< HEAD
+(setq doom-theme 'poet)
+=======
 (setq doom-theme 'doom-vibrant)
+>>>>>>> 523a53d (First commit)
 ;; (setq doom-font (font-spec : family "SauceCodePro Nerd Font Mono" : size 15))
 (after! doom-themes
   (setq doom-themes-enable-bold t
@@ -126,6 +135,13 @@
       (setq evil-repeat-info '([?g ?~])))
     (define-key evil-normal-state-map (kbd "g~") 'evil-operator-string-inflection)))
 
+<<<<<<< HEAD
+
+ (setq-default left-margin-width 2 right-margin-width 2) ; Define new widths.
+ (set-window-buffer nil (current-buffer)) ; Use them now.
+
+=======
+>>>>>>> 523a53d (First commit)
 ;; (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 (map! "C-/" #'+comment-line)
 
@@ -343,12 +359,66 @@
 
 (add-hook 'org-mode-hook #'my-org-latex-yas)
 
+<<<<<<< HEAD
+  ;; (setq gloabal-hl-line-mode nil)
+  ;; (setq display-line-numbers nil )
+
+=======
+>>>>>>> 523a53d (First commit)
 (after! org
   (setq time-stamp-active t
         org-hide-emphasis-markers t
     time-stamp-start "#\\+lastmod:[ \t]*"
     time-stamp-end "$"
     time-stamp-format "\[%04Y-%02m-%02d %3a %02H:%02M\]")
+<<<<<<< HEAD
+
+(let* ((variable-tuple
+          (cond ((x-list-fonts "ETBembo")         '(:font "ETBembo"))
+                ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
+                ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
+                ((x-list-fonts "Verdana")         '(:font "Verdana"))
+                ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
+                (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
+         (base-font-color     (face-foreground 'default nil 'default))
+         (headline           `(:inherit default))) ;; :weight bold :foreground ,base-font-color)))
+
+    (custom-theme-set-faces
+     'user
+     `(org-level-8 ((t (,@headline ,@variable-tuple :foreground "black" ))))
+     `(org-level-7 ((t (,@headline ,@variable-tuple :foreground "black" ))))
+     `(org-level-6 ((t (,@headline ,@variable-tuple :foreground "black" ))))
+     `(org-level-5 ((t (,@headline ,@variable-tuple :foreground "black" ))))
+     `(org-level-4 ((t (,@headline ,@variable-tuple :foreground "black" :height 1.1))))
+     `(org-level-3 ((t (,@headline ,@variable-tuple :foreground "black" :height 1.25))))
+     `(org-level-2 ((t (,@headline ,@variable-tuple :foreground "black" :height 1.5))))
+     `(org-level-1 ((t (,@headline ,@variable-tuple :foreground "black" :height 1.75))))
+     `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))))
+  (add-hook 'org-mode-hook 'visual-line-mode)
+  (custom-theme-set-faces
+   'user
+   '(variable-pitch ((t (:family "ETBembo" :height 180 :weight thin))))
+   '(fixed-pitch ((t ( :family "Fira Code Retina" :height 160)))))
+(add-hook 'org-mode-hook 'variable-pitch-mode)
+
+
+ (custom-theme-set-faces
+   'user
+ ;;   '(org-block ((t (:inherit fixed-pitch))))
+ ;;   '(org-code ((t (:inherit (shadow fixed-pitch)))))
+ ;;   '(org-document-info ((t (:foreground "dark orange"))))
+ ;;   '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+ ;;   '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+ ;;   '(org-link ((t (:foreground "royal blue" :underline t))))
+ ;;   '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ ;;   '(org-property-value ((t (:inherit fixed-pitch))) t)
+ ;;   '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-table ((t (:inherit fixed-pitch ))))
+ ;;   '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+ ;;   '(org-verbatim ((t (:inherit (shadow fixed-pitch)))))
+ )
+=======
+>>>>>>> 523a53d (First commit)
 (add-hook 'before-save-hook 'time-stamp))
 
 (after! ccls
