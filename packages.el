@@ -61,7 +61,4 @@
 (package! deft)
 (unpin! org-roam)
 (package! org-roam-ui)
-<<<<<<< HEAD
 (package! poet-theme)
-=======
->>>>>>> 523a53d (First commit)
