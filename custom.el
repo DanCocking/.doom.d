@@ -52,7 +52,7 @@
  '(vc-annotate-very-old-color nil))
  '(org-format-latex-options
    '(:foreground default :background default :scale 2.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
-     ("begin" "$1" "$" "$$" "\\(" "\\["))))
+     ("begin" "$1" "$" "$$" "\\(" "\\[")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -82,4 +82,4 @@
  '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
  '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
  '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
- '(doom-modeline-buffer-modified ((t (:foreground "orange")))))
+ '(doom-modeline-buffer-modified ((t (:foreground "orange"))))
