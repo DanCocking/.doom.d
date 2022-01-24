@@ -27,8 +27,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'poet)
 (setq doom-theme 'doom-vibrant)
+;; (setq doom-theme 'doom-vibrant)
 ;; (setq doom-font (font-spec : family "SauceCodePro Nerd Font Mono" : size 15))
 (after! doom-themes
   (setq doom-themes-enable-bold t
@@ -69,7 +69,7 @@
 
 
 ;; setting line number shit
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type 't)
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
@@ -252,7 +252,6 @@
       org-catch-invisible-edits 'smart            ; try not to accidently do weird stuff in invisible regions
       org-export-with-sub-superscripts '{})       ; don't treat lone _ / ^ as sub/superscripts, require _{} / ^{}
 (add-hook 'org-mode-hook 'turn-on-flyspell)
-
 (cl-defmacro lsp-org-babel-enable (lang)
   "Support LANG in org source code block."
   (setq centaur-lsp 'lsp-mode)
@@ -354,6 +353,7 @@
   ;; (setq display-line-numbers nil )
 
 (after! org
+
   (setq time-stamp-active t
         org-hide-emphasis-markers t
     time-stamp-start "#\\+lastmod:[ \t]*"
@@ -372,14 +372,14 @@
 
     (custom-theme-set-faces
      'user
-     `(org-level-8 ((t (,@headline ,@variable-tuple :foreground "black" ))))
-     `(org-level-7 ((t (,@headline ,@variable-tuple :foreground "black" ))))
-     `(org-level-6 ((t (,@headline ,@variable-tuple :foreground "black" ))))
-     `(org-level-5 ((t (,@headline ,@variable-tuple :foreground "black" ))))
-     `(org-level-4 ((t (,@headline ,@variable-tuple :foreground "black" :height 1.1))))
-     `(org-level-3 ((t (,@headline ,@variable-tuple :foreground "black" :height 1.25))))
-     `(org-level-2 ((t (,@headline ,@variable-tuple :foreground "black" :height 1.5))))
-     `(org-level-1 ((t (,@headline ,@variable-tuple :foreground "black" :height 1.75))))
+     `(org-level-8 ((t (,@headline ,@variable-tuple ))))
+     `(org-level-7 ((t (,@headline ,@variable-tuple ))))
+     `(org-level-6 ((t (,@headline ,@variable-tuple ))))
+     `(org-level-5 ((t (,@headline ,@variable-tuple ))))
+     `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
+     `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
+     `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
+     `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
      `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))))
   (add-hook 'org-mode-hook 'visual-line-mode)
   (custom-theme-set-faces
@@ -424,3 +424,5 @@
   ;;                '((t :slant "normal"))
   ;;                'face-defface-spec)
   ) ; optional as ccls is the default in Doom
+
+(remove-hook! (prog-mode text-mode conf-mode special-mode) #'hl-line-mode)
