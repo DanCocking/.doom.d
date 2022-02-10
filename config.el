@@ -42,9 +42,8 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
-(setq projectile-project-search-path '("~/.config/" "~/Projects/"))
-
+(setq projectile-project-search-path '("~/.config/" "~/Projects/" "~/Documents/"))
+;; TODO set up more projectile stuff
 ;; simple settings
 
 (setq-default
@@ -54,7 +53,7 @@
 
 (setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
       evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
-      auto-save-default t                         ; Nobody likes to loose work, I certainly don't
+      ;; auto-save-default t                         ; Nobody likes to loose work, I certainly don't
       truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
       password-cache-expiry nil                   ; I can trust my computers ... can't I?
       scroll-preserve-screen-position 'always     ; Don't have `point' jump around
@@ -69,7 +68,7 @@
 
 
 ;; setting line number shit
-(setq display-line-numbers-type 't)
+;; (setq display-line-numbers-type 't)
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
@@ -143,57 +142,15 @@
         key-chord-two-keys-delay 0.05))
 (after! key-chord
 
-  (key-chord-define-global "fj" 'send-doom-leader)
-  (key-chord-define-global "gh" 'send-doom-local-leader)
-
-  (setq dk-keymap (make-sparse-keymap))
-  (setq sl-keymap (make-sparse-keymap))
-
-  (key-chord-define-global "dk" dk-keymap)
-  (key-chord-define-global "sl" sl-keymap)
-
-  (defun add-to-keymap (keymap bindings)
-    (dolist (binding bindings)
-      (define-key keymap (kbd (car binding)) (cdr binding))))
-
-  (defun add-to-dk-keymap (bindings)
-    (add-to-keymap dk-keymap bindings))
-
-  (defun add-to-sl-keymap (bindings)
-    (add-to-keymap sl-keymap bindings))
-
-  (add-to-dk-keymap
-   '(("." . jump-to-register)
-     ("/" . org-recoll-search)
-     ("<SPC>" . rgrep)
-     ("a" . my/org-agenda)
-     ("b" . my/set-brightness)
-     ("c" . my/open-literate-private-config-file)
-     ("d" . dired-jump)
-     ("k" . doom/kill-this-buffer-in-all-windows)
-     ("m" . my/mathpix-screenshot-to-clipboard)
-     ("n" . narrow-or-widen-dwim)
-     ("o" . ibuffer)
-     ("p" . my/publish-dangirsh.org)
-     ("r" . my/set-redshift)
-     ("s" . save-buffer)
-     ("t" . +vterm/here)
-     ("T" . google-translate-at-point)
-     ("v" . neurosys/open-config-file)
-     ("w" . google-this-noconfirm)
-     ("x" . sp-splice-sexp)))
-
-  (key-chord-define-global ",." 'end-of-buffer)
-  ;; FIXME: accidentally triggered too often
-  (key-chord-define-global "zx" 'beginning-of-buffer)
+  ;; ;; FIXME: accidentally triggered too often
+  ;; (key-chord-define-global "zx" 'beginning-of-buffer)
 
 
   (key-chord-define-global "jk" 'evil-normal-state)
   (key-chord-define-global "kj" 'evil-normal-state)
 
-  (key-chord-define-global "qw" 'delete-window)
-  (key-chord-define-global "qp" 'delete-other-windows)
-  (key-chord-define-global ",," 'doom/open-scratch-buffer)
+  (key-chord-define-global "wq" 'delete-window)
+  (key-chord-define-global "pq" 'delete-other-windows)
 
   (key-chord-define-global "fk" 'other-window)
   (key-chord-define-global "jd" 'rev-other-window)
@@ -206,22 +163,11 @@
   (key-chord-define-global "hk" 'helpful-key)
   (key-chord-define-global "hv" 'helpful-variable)
 
-  ;; no bueno: e.g. "pathfinder", "highfidelity"
-  ;; (key-chord-define-global "hf" 'helpful-function)
-
-  (key-chord-define-global "vn" 'split-window-vertically-and-switch)
-  (key-chord-define-global "vm" 'split-window-vertically-and-switch) ; ergodox
-  (key-chord-define-global "hj" 'split-window-horizontally-and-switch)
-
-  (key-chord-define-global "jm" 'my/duplicate-line-or-region)
   (key-chord-define-global "fv" 'comment-line)
 
-  (key-chord-define-global "kl" 'er/expand-region)
+  (key-chord-define-global "lk" 'er/expand-region)
+  )
 
-  (key-chord-define-global "xx" 'execute-extended-command)
-  (key-chord-define-global "xf" 'find-file)
-
-  (key-chord-define-global "jp" 'my/insert-jupyter-python-block))
 
 (use-package! info-colors
   :commands (info-colors-fontify-node))
@@ -230,8 +176,8 @@
 (use-package! selectic-mode
   :commands selectic-mode)
 
-;; (use-package! org-pretty-table
-;;   :commands (org-pretty-table-mode global-org-pretty-table-mode))
+(use-package! org-pretty-table
+  :commands (org-pretty-table-mode global-org-pretty-table-mode))
 
 (use-package! org-appear
   :hook (org-mode . org-appear-mode)
@@ -251,7 +197,6 @@
       org-export-in-background t                  ; run export processes in external emacs process
       org-catch-invisible-edits 'smart            ; try not to accidently do weird stuff in invisible regions
       org-export-with-sub-superscripts '{})       ; don't treat lone _ / ^ as sub/superscripts, require _{} / ^{}
-(add-hook 'org-mode-hook 'turn-on-flyspell)
 (cl-defmacro lsp-org-babel-enable (lang)
   "Support LANG in org source code block."
   (setq centaur-lsp 'lsp-mode)
@@ -379,7 +324,7 @@
      `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
      `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
      `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
-     `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
+     `(org-level-1 ((t (,@headline ,@variable-tuple :foreground "lavender" :height 1.75))))
      `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))))
   (add-hook 'org-mode-hook 'visual-line-mode)
   (custom-theme-set-faces
@@ -426,3 +371,12 @@
   ) ; optional as ccls is the default in Doom
 
 (remove-hook! (prog-mode text-mode conf-mode special-mode) #'hl-line-mode)
+
+;; Avy
+(setq! avy-all-windows t)
+
+;; Org Bullets
+ (setq!
+    ;; org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿")
+    org-superstar-headline-bullets-list '("⚘" "⚛" "⟁")
+)
