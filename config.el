@@ -8,8 +8,6 @@
 ;; clients, file templates and snippets.
 (setq user-full-name "Dan Cocking"
       user-mail-address "cokingdan@gmail.com")
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -42,7 +40,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq projectile-project-search-path '("~/.config/" "~/Projects/" "~/Documents/"))
+(setq projectile-project-search-path '("~/.config/" "~/Documents/"))
 ;; TODO set up more projectile stuff
 ;; simple settings
 
@@ -132,8 +130,6 @@
  (setq-default left-margin-width 2 right-margin-width 2) ; Define new widths.
  (set-window-buffer nil (current-buffer)) ; Use them now.
 
-;; (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-(map! "C-/" #'+comment-line)
 
 (use-package! key-chord
   :config
@@ -144,7 +140,6 @@
 
   ;; ;; FIXME: accidentally triggered too often
   ;; (key-chord-define-global "zx" 'beginning-of-buffer)
-
 
   (key-chord-define-global "jk" 'evil-normal-state)
   (key-chord-define-global "kj" 'evil-normal-state)
@@ -159,13 +154,11 @@
   (key-chord-define-global "KK" 'next-buffer)
 
 
-  (key-chord-define-global "hm" 'helpful-at-point)
   (key-chord-define-global "hk" 'helpful-key)
   (key-chord-define-global "hv" 'helpful-variable)
 
-  (key-chord-define-global "fv" 'comment-line)
-
   (key-chord-define-global "lk" 'er/expand-region)
+  (key-chord-define-global "kl" 'er/expand-region)
   )
 
 
@@ -173,8 +166,6 @@
   :commands (info-colors-fontify-node))
 (add-hook 'Info-selection-hook 'info-colors-fontify-node)
 (setq +zen-text-scale 0.8)
-(use-package! selectic-mode
-  :commands selectic-mode)
 
 (use-package! org-pretty-table
   :commands (org-pretty-table-mode global-org-pretty-table-mode))
@@ -222,7 +213,7 @@
                 (format "Prepare local buffer environment for org source block (%s)."
                         (upcase ,lang))))))))
 (defvar org-babel-lang-list
-  '("go" "python" "ipython" "bash" "sh" "C"))
+  '("go" "java" "python" "ipython" "bash" "sh" "C"))
 (dolist (lang org-babel-lang-list)
   (eval `(lsp-org-babel-enable ,lang)))
 
